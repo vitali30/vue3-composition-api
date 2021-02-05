@@ -39,6 +39,7 @@ body{
     height: 20px;
     border: 1px solid rgb(71, 71, 71);
     border-radius: 2px;
+    outline: none;
 }
 .button{
     width: 150px;

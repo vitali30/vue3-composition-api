@@ -64,7 +64,7 @@ export default {
 }
 
 function useForm(formObject = {}) {
-    
+
     const form = reactive({});
     const validKey = 'valid'
 
@@ -72,11 +72,8 @@ function useForm(formObject = {}) {
         form[key] = useField(value)
     }
 
-    const withoutValid = k => k != validKey
-
-
     form.valid = computed(() => {
-        return Object.keys(form).filter(withoutValid).reduce((acc, key) => {
+        return Object.keys(form).filter(k => k != validKey).reduce((acc, key) => {
             acc = form[key].valid;
             return acc
         }, true)
@@ -99,7 +96,6 @@ function useField(field) {
         valid.value = true
 
         Object.keys(field.validators ?? {}).map(name => {
-            console.log(name);
             const isValid = field.validators[name](val);
             errors[name] = not(isValid)
     
